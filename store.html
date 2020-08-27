@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>전주한지문화축제</title>
+    <script src="/js/jquery-3.4.1.min.js"></script>
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <script src="/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/js/common.js"></script>
+</head>
+<body>
+    <!-- 헤더 영역 -->
+    <input type="checkbox" id="open-aside" hidden>
+    <header>
+        <div class="container h-100 d-between">
+            <div class="d-flex align-items-center">
+                <a href="#">
+                    <img src="/images/Wlogo.svg" alt="전주한지문화축제" title="전지한지문화축제" height="65">
+                </a>
+                <div class="nav d-none d-lg-flex ml-4">
+                    <div class="nav__item">
+                        <a href="#">전주한지문화축제</a>
+                        <div class="nav__list">
+                            <a href="#">개요/연혁</a>
+                            <a href="#">찾아오시는길</a>
+                        </div>
+                    </div>
+                    <div class="nav__item">
+                        <a href="#">한지상품판매관</a>
+                        <div class="nav__list">
+                            <a href="#">한지업체</a>
+                            <a href="#">온라인스토어</a>
+                        </div>
+                    </div>
+                    <div class="nav__item">
+                        <a href="#">한지공예대전</a>
+                        <div class="nav__list">
+                            <a href="#">출품신청</a>
+                            <a href="#">참가작품</a>
+                        </div>
+                    </div>
+                    <div class="nav__item">
+                        <a href="#">축제공지사항</a>
+                        <div class="nav__list">
+                            <a href="#">알려드립니다</a>
+                            <a href="#">1:1문의</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex align-items-center">
+                <div class="auth d-none d-lg-flex">
+                    <a href="#">로그인</a>
+                    <a href="#">회원가입</a>
+                </div>
+            </div>
+            <label for="open-aside" class="icon text-gray fx-3 d-lg-none">
+                <i class="fa fa-bars"></i>
+            </label>
+        </div>
+    </header>
+    <!-- /헤더 영역 -->
+    <!-- 사이드 -->
+    <aside class="d-lg-none">
+        <label for="open-aside" class="aside__background"></label>
+        <div class="aside__content">
+            <div class="auth auth--aside">
+                <a href="#">로그인</a>
+                <a href="#">회원가입</a>
+            </div>     
+            <div class="nav nav--aside">
+                <div class="nav__item">
+                    <a href="#">전주한지문화축제</a>
+                    <div class="nav__list">
+                        <a href="#">개요/연혁</a>
+                        <a href="#">찾아오시는길</a>
+                    </div>
+                </div>
+                <div class="nav__item">
+                    <a href="#">한지상품판매관</a>
+                    <div class="nav__list">
+                        <a href="#">한지업체</a>
+                        <a href="#">온라인스토어</a>
+                    </div>
+                </div>
+                <div class="nav__item">
+                    <a href="#">한지공예대전</a>
+                    <div class="nav__list">
+                        <a href="#">출품신청</a>
+                        <a href="#">참가작품</a>
+                    </div>
+                </div>
+                <div class="nav__item">
+                    <a href="#">축제공지사항</a>
+                    <div class="nav__list">
+                        <a href="#">알려드립니다</a>
+                        <a href="#">1:1문의</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </aside>
+    <!-- /사이드 -->
+
+    <!-- 비주얼 -->
+    <div class="visual visual--sub">
+        <div class="background background--black">
+            <img src="/images/visual/sub.jpg" alt="배경 이미지" title="배경 이미지">
+        </div>
+        <div class="visual__content container">
+            <div class="text-center">
+                <div class="fx-2 text-gray">한지상품판매관</div>
+                <div class="fx-7 text-white mt-1">온라인스토어</div>
+            </div>
+        </div>
+    </div>
+    <!-- /비주얼 -->
+
+    <!-- 검색 -->
+    <div class="container py-5">
+        <div class="p-3 border d-flex justify-content-center align-items-center bg-light">
+            <div id="search-area" data-name="search_tags" class="w-100">
+                
+            </div>
+            <button class="icon ml-3 text-red">
+                <i class="fa fa-search"></i>
+            </button>
+        </div>
+    </div>
+    <!-- /검색 -->
+
+    <!-- 상품 영역 -->
+    <div class="container py-5">
+        <div class="d-between">
+            <div>
+                <hr>
+                <div class="title">상품 리스트</div>
+            </div>
+            <button class="btn-filled" data-target="#entry-modal" data-toggle="modal">상품 등록</button>
+        </div>
+        <div id="store" class="row mt-4">
+            
+        </div>
+    </div>
+    <!-- /상품 영역 -->
+
+    <!-- 장바구니 영역 -->
+    <div class="container py-5 border-top">
+        <hr>
+        <div class="title">장바구니</div>
+        <div class="t-head mt-4">
+            <div class="cell-50">상품 정보</div>
+            <div class="cell-20">수량</div>
+            <div class="cell-20">합계 포인트</div>
+            <div class="cell-10">-</div>
+        </div>
+        <div id="cart">
+
+        </div>
+        
+        <div class="mt-4 d-between">
+            <div>
+                <span class="fx-n1">총 합계 포인트</span>
+                <span id="total-point" class="ml-3 fx-3">0</span>
+                <span class="fx-n1">p</span>
+            </div>
+            <button id="btn-buy" class="btn-filled">구매 완료</button>
+        </div>
+    </div>
+    <!-- /장바구니 영역 -->
+
+    <form id="entry-modal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="fx-4">상품 등록</div>
+                </div>
+                <div class="modal-body">    
+                    <div class="form-group">
+                        <label>이미지</label>
+                        <input type="hidden" name="image" id="base64">
+                        <input type="file" id="upload" class="form-control" accept="image/*" required>
+                    </div>
+                    <div class="form-group">
+                        <label>이름</label>
+                        <input type="text" name="paper_name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>업체명</label>
+                        <input type="text" name="company_name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>가로 사이즈</label>
+                        <input type="number" name="width_size" class="form-control" min="100" max="1000" required>
+                    </div>
+                    <div class="form-group">
+                        <label>세로 사이즈</label>
+                        <input type="number" name="height_size" class="form-control" min="100" max="1000" required>
+                    </div>
+                    <div class="form-group">
+                        <label>포인트</label>
+                        <input type="number" name="point" class="form-control" min="10" max="1000" step="10" required>
+                    </div>
+                    <div class="form-group">
+                        <label>해시태그</label>
+                        <div id="entry-tags" data-name="hash_tags"></div>
+                    </div>
+                </div>    
+                <div class="modal-footer">
+                    <button class="btn-filled">추가 완료</button>
+                </div> 
+            </div>
+        </div>
+    </form>
+
+    <script src="/js/store.js"></script>
+
+    <!-- 푸터 -->
+    <footer>
+        <div class="footer__top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-6 mb-4 mb-lg-0">
+                        <a href="#" class="text-dark">전주한지문화축제</a>
+                        <div class="ml-1 mt-2">
+                            <a href="#" class="fx-n1 text-muted">개요/연혁</a>
+                        </div>
+                        <div class="ml-1">
+                            <a href="#" class="fx-n1 text-muted">찾아오시는길</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-6 mb-4 mb-lg-0">
+                        <a href="#" class="text-dark">한지상품판매관</a>
+                        <div class="ml-1 mt-2">
+                            <a href="#" class="fx-n1 text-muted">한지업체</a>
+                        </div>
+                        <div class="ml-1">
+                            <a href="#" class="fx-n1 text-muted">온라인스토어</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-6 mb-4 mb-lg-0">
+                        <a href="#" class="text-dark">한지공예대전</a>
+                        <div class="ml-1 mt-2">
+                            <a href="#" class="fx-n1 text-muted">출품신청</a>
+                        </div>
+                        <div class="ml-1">
+                            <a href="#" class="fx-n1 text-muted">참가작품</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-6 mb-4 mb-lg-0">
+                        <a href="#" class="text-dark">축제공지사항</a>
+                        <div class="ml-1 mt-2">
+                            <a href="#" class="fx-n1 text-muted">알려드립니다</a>
+                        </div>
+                        <div class="ml-1">
+                            <a href="#" class="fx-n1 text-muted">1:1문의</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer__bottom">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-2">
+                        <div class="text-center">
+                            <img src="/images/logo.svg" alt="전주한지문화축제" title="전주한지문화축제" height="60">
+                        </div>
+                    </div>
+                    <div class="col-lg-8 order-1 order-lg-0">
+                        <div class="text-center text-muted">
+                            Copyright 2018 jhanji. All Right Reserved.
+                        </div>
+                    </div>
+                    <div class="col-lg-2 my-4 my-lg-0">
+                        <div class="text-center">
+                            <span class="icon text-muted"><i class="fa fa-facebook"></i></span>
+                            <span class="icon text-muted"><i class="fa fa-twitter"></i></span>
+                            <span class="icon text-muted"><i class="fa fa-google-plus"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>     
+        </div>
+    </footer>
+    <!-- /푸터 -->
+</body>
+</html>
