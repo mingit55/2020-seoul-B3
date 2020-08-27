@@ -46,7 +46,6 @@ class App {
             $(".context-menu").remove();
         });
 
-
         /**
          * 도구 선택
          */
@@ -94,6 +93,15 @@ class App {
                                                 </div>
                                             </div>`);
             });
+        });
+
+        /**
+         * 이미지 삭제
+         */
+        $(".remove-artwork").on("click", e => {
+            if(this.ws.selected === "select" && this.ws.tool.selected){
+                this.ws.artworks = this.ws.artworks.filter(artwork => this.ws.tool.selected !== artwork);
+            }
         });
 
         $("#list-modal").on("click", ".col-lg-3", e => {
