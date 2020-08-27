@@ -32,6 +32,8 @@ class Source {
     }
 
     getColor(x, y){
+        x = parseInt(x);
+        y = parseInt(y);
         if(0 <= x && x < this.width && 0 <= y && y < this.height){
             let i = x * 4 + y * 4 * this.width;
             let r = this.data[i];
@@ -43,6 +45,8 @@ class Source {
     }
 
     setColor(x, y, color){
+        x = parseInt(x);
+        y = parseInt(y);
         if(0 <= x && x < this.width && 0 <= y && y < this.height){
             let i = x * 4 + y * 4 * this.width;
             this.data[i] = color[0];

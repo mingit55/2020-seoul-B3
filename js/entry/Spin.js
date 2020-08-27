@@ -12,7 +12,11 @@ class Spin extends Tool {
 
             this.selected = target;
             this.prevImage = target.src;
-            this.prevSliced = target.sliced;
+            this.prevSliced = document.createElement("canvas");
+            this.prevSliced.width = target.sliced.width;
+            this.prevSliced.height = target.sliced.height;
+            let psctx = this.prevSliced.getContext("2d");
+            psctx.drawImage(target.sliced, 0, 0);
 
             this.image = document.createElement("canvas");
             this.image.width = target.src.width;
@@ -109,7 +113,7 @@ class Spin extends Tool {
         this.selected.src = this.prevImage;
         this.selected.sliced = this.prevSliced;
 
-        this.recalculate();
+        this.selected.recalculate();
         this.unselectAll();
     };
 }

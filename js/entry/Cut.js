@@ -123,7 +123,7 @@ class Cut extends Tool {
             item.x = target.x;
             item.y = target.y;
             item.sctx.drawImage(target.sliced, 0, 0);
-            slicedArr.forEach(([x, y]) => item.sctx.fillRect(x, y, 1, 1));
+            slicedArr.forEach(([x, y]) => item.sctx.fillRect(x - 1, y - 1, 2, 2));
             item.recalculate();
             this.ws.artworks.push(item);
         });

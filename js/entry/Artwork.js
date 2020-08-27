@@ -45,16 +45,38 @@ class Artwork {
         this.x += X;
         this.y += Y;
 
+        let slicedData = this.sctx.getImageData(0, 0, this.sliced.width, this.sliced.height);
+        this.sliced.width = W;
+        this.sliced.height = H;
+        this.sctx.putImageData(slicedData, -X, -Y);
+
         let ssrc = new Source(this.sctx.getImageData(0, 0, this.sliced.width, this.sliced.height));
         this.sliced.width = W;
         this.sliced.height = H;
         this.sctx.clearRect(0, 0, this.sliced.width, this.sliced.height);
-        for(let y = Y; y < Y + H; y++){
-            for(let x = X; x < X + W; x++){
-                if(ssrc.getColor(x, y) && src.isSlicedPixel(x - X, y - Y)){
-                    this.sctx.fillRect(x - X, y - Y, 1, 1);
+        for(let y = 0; y < this.sliced.height; y++){
+            for(let x = 0; x < this.sliced.width; x++){
+                if(ssrc.getColor(x, y) && src.isSlicedPixel(x, y)){
+                    this.sctx.fillRect(x - 1, y - 1, 2, 2);
                 }
             }
         }
+    }
+
+    isNear(artwork){
+        for(let y = this.y; y < this.y + this.src.height; y++){
+            for(let x = this.x; x < this.x + this.src.width; x++){
+                let ax = x - artwork.x;
+                let ay = y - artwork.y;
+                
+                let tx = x - this.x;
+                let ty = y - this.y;
+
+                if(artwork.src.getColor(ax, ay) && this.src.getColor(tx, ty)){
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }
