@@ -15,6 +15,11 @@ class App {
 
             this.ws = new Workspace(this);
             
+
+            let craftworks = (await ( fetch("/json/craftworks.json").then(res => res.json()) ));
+            this.tags = craftworks.reduce((p, c) => [...p, ...c.hash_tags], craftworks[0].hash_tags).map(tag => tag.substr(1));
+            this.entryModule = new HashModule("#entry-tags", this.tags);
+
             this.setEvents();
         });
     }
