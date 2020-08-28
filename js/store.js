@@ -132,11 +132,14 @@ class App {
             
             paper.id = await this.db.add("papers", paper);
             this.papers.push( new Paper(paper) );
+            this.tags.push( ...paper.hash_tags );
             
             this.updateStore();
 
             $("#entry-modal").modal("hide");
             $("#entry-modal input").val("");
+            this.entryModule.tags = null;
+            this.entryModule.render();
         });
 
         // 상품 추가 - 파일 업로드

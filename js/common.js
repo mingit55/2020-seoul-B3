@@ -115,14 +115,12 @@ class HashModule {
     }
 
     render(){
-        // 에러 메세지 삭제
-        this.$error.text("");
 
         // 자동완성
         this.$examples.html("");
         if(this.showList.length > 0){
-            this.showList.forEach(exp => {
-                this.$examples.append(`<div class="example-list__item">#${exp}</div>`);
+            this.showList.forEach((exp, i) => {
+                this.$examples.append(`<div class="example-list__item ${i == this.focusIdx ? "active" : ""}" data-idx="${i}">#${exp}</div>`);
             });
         }
         
@@ -133,11 +131,13 @@ class HashModule {
         });
 
         this.$value.val( JSON.stringify(this.tags) );
-        this.$input.focus();
     }
 
     setEvents(){
         this.$input.on("input", e => {
+            // 에러 메세지 삭제
+            this.$error.text("");
+        
             // 입력 제한
             e.target.value = e.target.value.replace(/([^0-9a-zA-Zㄱ-ㅎㅏ-ㅣ가-힣_])/g, "").substr(0, 30);
             this.$input.focus();
@@ -163,13 +163,35 @@ class HashModule {
         this.$input.on("keydown", e => {
             // Focus & Enter
             if(e.keyCode === 13 && this.focusItem){
+                e.preventDefault();
                 this.pushTag(this.focusItem);
+                this.focusIdx = null;
+                this.showList = [];
             }
             // Enter, Tab, Spacebar
             else if([13, 9, 32].includes(e.keyCode)){
+                e.preventDefault();
                 this.pushTag(this.keyword);
             }
+            else if(e.keyCode == 38){
+                e.preventDefault();
+                this.focusIdx = this.focusIdx == null ? this.showList.length - 1
+                    : this.focusIdx - 1 < 0 ? this.showList.length - 1
+                    : this.focusIdx - 1;
+            }
+            else if(e.keyCode == 40){
+                e.preventDefault();
+                this.focusIdx = this.focusIdx == null ? 0
+                    : this.focusIdx + 1 >= this.showList.length ? 0
+                    : this.focusIdx + 1;
+            }
             this.render();
+        });
+
+        this.$examples.on("click", ".example-list__item", e => {
+            this.focusIdx = parseInt(e.currentTarget.dataset.idx);
+            this.render();        
+            this.$input.focus();   
         });
 
         // 태그 삭제

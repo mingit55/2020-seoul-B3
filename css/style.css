@@ -958,6 +958,8 @@ aside {
     padding-left: 1em;
     border: 1px solid #ddd;
 }
+.example-list__item:hover { background-color: #f7f7f7; }
+.example-list__item.active { background-color: #eee; }
 .example-list__item:not(:last-child) { border-bottom: 0; }
 
 
